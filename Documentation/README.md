@@ -31,6 +31,7 @@ A tényleges futási idő 10 egység volt. A cél, hogy úgy alkossuk meg a "men
 #### A képen feladatok és robotok találhatóak. A kékkel színezett node-ok jelentik a robotok által elfoglalt pozíciót, míg a pirossal színezett node-ok a feladatok helyét jelzik, ahol a piros szám a feladat hosszát jelöli
 
 ![image](https://github.com/user-attachments/assets/8309897a-296e-4f1f-8a4e-f003c896fee5)
+
 *Kép kiemelve a cikkből*
 
 A cikk bizonyítja, hogy teljes, csillag, "planar", "bipartite" gráfokra vetítve ez a probléma NP-complete.
