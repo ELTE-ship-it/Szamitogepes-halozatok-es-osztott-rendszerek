@@ -8,17 +8,17 @@ Napjainkban egyre több laboratóriumi környezetben előfordulnak robotok. A ci
 robot esetén hogyan lehet a kiosztott feladatokat megfelelően rendezni, hogy X feladatot végző robot ne blokkolja Y robot tevékenységét.
 
 Hogy ezt illusztrálni lehessen, kell készíteni egy gráf-ot, melyen:
-- Elhelyezünk node-okat, melyek a robotok által elvégezendő feladataokat illusztrálják
+- Elhelyezünk node-okat, melyek a robotok által elvégezendő feladatokat illusztrálják
 - Minden node-on pontosan egy robot állhat egy egységnyi időben
 - Minden robatnak rendelkeznie kell egy "menetrenddel", melyben az van leírva, hogy mikor hol helyezkedik el a graph-on
 - Amennyiben egy robot elfoglal egy node-ot, legalább annyi ideig ott kell maradnia, amennyi ideig tart a feladat
 - Két node között való mozgás időbe tellik, azonban a robotok várakozhatnak egy node-on a fealadt elvégzése után
+- Minden robotnak csak azokat a feladatokat kell teljesíteni, ami hozzá lett rendelve
 
 Az algoritmus célja, hogy minden robotnak meghatározzunk egy olyan "menetrendet", melyben a lehető legkevesebb lépéssel végez az összes robot és minimalizáljuk az utolsónak végző robot haladási idejét.
 Minden robot rendelkezni fog egy saját menetrenddel, mely időpillanatokból és elfoglalt helyből áll.
 
 **Pl:**
-
 ```
 Három robot esetén:
 Robot 1: 5 egységnyi ideig fut
@@ -28,23 +28,46 @@ Robot 3: 10 egységnyi ideig fut
 A tényleges futási idő 10 egység volt. A cél, hogy úgy alkossuk meg a "menetrendeket", hogy a 3. robot kevesebb idő alatt végezzen.
 ```
 
-![image](https://github.com/user-attachments/assets/a55ae4e3-b284-43fe-8ce2-33059ee27dea)
-*Kép generálva ChatGPT4o használatával*
+#### A képen feladatok és robotok találhatóak. A kékkel színezett node-ok jelentik a robotok által elfoglalt pozíciót, míg a pirossal színezett node-ok a feladatok helyét jelzik, ahol a piros szám a feladat hosszát jelöli
+
+![image](https://github.com/user-attachments/assets/8309897a-296e-4f1f-8a4e-f003c896fee5)
+*Kép kiemelve a cikkből*
 
 A cikk bizonyítja, hogy teljes, csillag, "planar", "bipartite" gráfokra vetítve ez a probléma NP-complete.
-Továbbá pozitív eredményeket mutat "line graph"-okra, miszerint található olyan optimális menetrend lista k mennyiségű robto számára,
+Továbbá pozitív eredményeket mutat "line graph"-okra, miszerint található olyan optimális menetrend lista k mennyiségű robot számára,
 m mennyiségű feladat esetén (ahol a feladatok ugyan olyan hosszúak és a feladatok közti átsorolási idő mindenhol n), mely
 elvégezhető O(kmn) idő alatt. Illetve ad egy k-becslést, amikor a feladatok hossza határtalan.
 
 ## Összegzés
 
-### Bemutatás
+Fő feladat, hogy egy olyan "menetrend listát" találjunk, mely megfelel a következőknek:
+- Minden feladat elkészül egy robot által
+- 2 robot nem végezheti ugyanazt a feladatot egyszerre
+- Minimalizálva lett a leghosszabb menetrend időtartama
 
-### Előkészületek
+### Főbb feladatok
 
-### Eredmények bemutatása
+- `NP-Completeness` be lett bizonyítva teljes, csillag, "planar" és "bipartite" gráfokra.
+- Egy `optimális algoritmus` lett készítve a robotok renedezésére **útgráf** esetén, ahol minden feladat n egységnyi időt vesz igénybe
+- Egy `k-becslés` algoritmus lett bemutatva olyan **útgráfok** esetén, melyeknek változó a feladata hosszúsága
+- `k-ROBOT SCHEDULING` egyenlet készült különböző gráfokra
 
-### Algoritmikus eredmények bemutatása útgráfok esetén
+### Komplexitás eredmények
+
+- `NP-complete`-nak nevezhető
+  - teljes gráfok
+  - csillag gráfok
+  - Planar graphs
+  - Bipartite graphs
+- `Útgráfok`
+  - **Optimális algoritmus** állapítható meg n hosszúságú feladatokk esetén
+  - **k-becslés algoritmus** állapítható meg változó hosszúságú feladatok esetén
+
+### Készített algoritmusok
+
+- `Single robot scheduling`: Optimális egy robot esetén, útgráfon
+- `Two robot scheduling`: Optimális és 2-becslés megoldások két robot esetén
+- `k-robot scheduling`: Optimális egyenlő hosszúságú feladatok egy útgráf esetén és k-becslés határozható meg változó hosszúságú feladatok esetén
 
 ## Konklúzió
 
