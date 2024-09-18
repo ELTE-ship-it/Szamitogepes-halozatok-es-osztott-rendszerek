@@ -1,13 +1,13 @@
 # Számítógépes hálózatok és osztott rendszerek
 
 ## Cikk összegzés
-Megtalálható a `documentation` mappában lévő **README** file-ban.
+Megtalálható a `documentation` mappában lévő **README** file-ban. ([Navigálás a file-ra](/Documentation/README.md))
 
 ## Készített szoftver
 
 ### Alapötlet
 
-A gráfok tekinthetőek dinamikus labirintusoknak, melyben a falat a robotok képezik. A labirintus a robotok mozgásától lesz dinamikus. Mivel az a node, mely foglalt, nem közelíthető meg más robotok által, a labirintusban falat alkotnak. A labirintusból való kijutás egy robot számára a következő elvégezendő feladat pozíciója.
+A gráfok tekinthetőek dinamikus labirintusoknak, melyben a falat a robotok képezik. A labirintus a robotok mozgásától lesz dinamikus. Mivel az a node, mely foglalt, nem közelíthető meg más robotok által, a labirintusban falat alkotnak. A labirintusból való "kijutás" helyét egy robot számára a következő elvégezendő feladat pozíciója jelöli.
 
 Minden lépés pontosan egy egység időt vesz igénybe a robotok számára.
 
@@ -39,6 +39,10 @@ N1--2--N8--2--N1
 N5--3--N4--2--N3
 ```
 
+Ezzel a módszerrel végtelen mennyiségű node- és legfeljebb annyi robot, ahány node adható meg. A végeredmény egy minden robot számára optimális út lesz, melyben elvégzik az összes számukra kijelölt feladatot. Minden robot saját maga tárolja az útvonalát, majd az algoritmus az életciklusa végén begyűjti az összes robottól az adatot és egy listát készít belőle, melyben a leghosszabb lista lesz a teljes futási idő hossza.
+
+Mivel a cikk célja az optimalizáció, így az algoritmust le kell lehessen futtattani egy robotra is. Amennyiben ez megvalósul, az utolsó (leglassabban végző robot) számára lehet építeni egy pályát a többi robot listája alapján, azonban most egyedül lesz "játékos". A többiek X időben foglalt helye statikus és nem változtatható, így a leglassabb robot egyedül keres optimálisabb utat. Amennyiben talál és az rövidebb ideig tart, mint az egyel előtte gyorsabban végző robot, úgy le kell futtatni az algoritmust arra az egy robotra is. Ez addig megy, míg a leglassabb robot már nem tud jobb útvonalat találni és ő marad a leglassabb. Ebben az esetben a probléma megoldottnak tekinthető és elkészült a legoptimálisabb útvonal minden robot számára.
+
 ### Pseudo kód - Útkeresés
 
 ### Ismert problémák
@@ -53,3 +57,7 @@ N5--3--N4--2--N3
 #### Algoritmust illetően
   
 - A robotok tudjanak kommunikálni, hogy abban az esetben, hogyha egy utat blokkolnak egy másik robot elől, de csak várakoznak, akkor tudják úgy módosítani az útjukat, hogy vagy később érjenek oda, hogy a kérvényező robot elmehessen, vagy térjen az ezt követő legoptimálisabb útvonalra
+
+## Kapcsolódó dokumentumok
+
+- [Az útvonal kereséshez magyarázó videó](https://www.youtube.com/watch?v=-L-WgKMFuhE&t=348s)
