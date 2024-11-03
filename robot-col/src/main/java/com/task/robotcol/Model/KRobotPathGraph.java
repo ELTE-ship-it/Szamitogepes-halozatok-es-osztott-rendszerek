@@ -46,12 +46,7 @@ public class KRobotPathGraph {
         robotTaskManager.sortRobotTaskByIndex(tasks);
         devideTasksForRobots();
     }
-
-    /*private void devideTasksForRobots() {
-        //TODO: ez ugye meg nem jo, mert az elso robotnak odadja az osszes taskot
-        robots.getFirst().setTasks(tasks);
-        oneRobot(robots.getFirst());
-    }*/
+    
     private void writeAssignmentsToFile(String filename) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
             // Log initial task positions
